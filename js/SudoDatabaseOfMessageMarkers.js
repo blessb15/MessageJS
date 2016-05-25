@@ -2,7 +2,7 @@
 LatLngDatabase = {};
 exports.addToDatabase = function(lat, long, message){
   var latLong = [lat, long];
-  if(!(LatLngDatabase[latLong])) {
+  if(!(latLong in LatLngDatabase)) {
     LatLngDatabase[latLong] = [];
     LatLngDatabase[latLong].push(message);
   } else {
