@@ -1,4 +1,3 @@
-
 LatLngDatabase = {};
 exports.addToDatabase = function(lat, long, message, address){
   var latLong = [lat, long];
@@ -7,7 +6,6 @@ exports.addToDatabase = function(lat, long, message, address){
     console.log(LatLngDatabase);
     LatLngDatabase[latLong].unshift(address);
     LatLngDatabase[latLong][1].push(message);
-
   } else {
     LatLngDatabase[latLong][1].push(message);
   }
