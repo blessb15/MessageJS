@@ -1,24 +1,22 @@
-var GenerateMessage = require("./../js/GenerateMessagePin.js").GenerateMessage;
-var addToDatabase = require("./../js/GenerateMessagePin.js").addToDatabase;
-var displayMessages = require("./../js/GenerateMessagePin.js").displayMessages;
-var mapIt = require("./../js/GenerateMessagePin.js").mapIt;
+var MessageJS = require("./../js/GenerateMessagePin.js").MessageJS;
 
 
 
 
 $( document ).ready(function() {
+    var messageJS = new MessageJS();
 
   $("#addressForm").submit(function(event){
     event.preventDefault();
     var userAddress = $("#address").val();
     var userMessage = $("#message").val();
-    GenerateMessage(userAddress, userMessage);
+    messageJS.GenerateMessage(userAddress, userMessage, messageJS);
   });
 
   navigator.geolocation.getCurrentPosition(function(response){
     var latitude = response.coords.latitude;
     var longitude = response.coords.longitude;
-    mapIt(latitude, longitude);
+    messageJS.mapIt(latitude, longitude);
   });
 
   setInterval(function() {
@@ -26,7 +24,7 @@ $( document ).ready(function() {
     navigator.geolocation.getCurrentPosition(function(response){
       var latitude = response.coords.latitude.toFixed(4);
       var longitude = response.coords.longitude.toFixed(4);
-      var messageArray = displayMessages(latitude, longitude);
+      var messageArray = messageJS.displayMessages(latitude, longitude, messageJS);
       $("#messageFromLocation").empty();
       messageArray.forEach(function(messages) {
         messages.forEach(function(message) {
